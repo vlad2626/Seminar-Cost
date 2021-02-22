@@ -6,7 +6,7 @@ Public Class Compute
     Private numSeminar As Double
     Private numPeople As Double
     Private numRevenue As Double
-    Private cCategories As ArrayList
+    Private cCategory As ArrayList
     Private Stats As Stats
 
 
@@ -32,7 +32,7 @@ Public Class Compute
         Try
             readInputFile(strFileName)
         Catch ex As Exception
-
+            'code
         End Try
 
     End Sub
@@ -57,6 +57,7 @@ Public Class Compute
         Dim strFields() As String
         Dim i As Integer
 
+
         lstInfo.Items.Clear() ' clears anything in the fiels 
 
         Try
@@ -69,14 +70,14 @@ Public Class Compute
                 For i = 0 To strFields.Length - 1
                     lstInfo.Columns.Add(strFields(i))
                 Next
-
+                'format headings
                 With lstInfo
                     .Columns(ID).Width = 80
                     .Columns(Subject).Width = 80
                     .Columns(Area).Width = 80
                     .Columns(Type).Width = 80
                     .Columns(Instructor).Width = 80
-                    .Columns(Length).Width = 120
+                    .Columns(Length).Width = 170
                     .Columns(Location).Width = 80
                     .Columns(RoomCapacity).Width = 120
                     .Columns(NumberRegistered).Width = 80
@@ -88,20 +89,28 @@ Public Class Compute
             While Not fileIn.EndOfStream
                 lineIn = fileIn.ReadLine
                 strFields = lineIn.Split(",")
-                Dim lviRow As New ListViewItem(strFields(0))
 
-                For i = 1 To strFields.Length - 1 ' change to 1
-                    Dim lsiCol As New ListViewItem.ListViewSubItem
-                    If i <> ID Then
-                        lsiCol.Text = strFields(i)
-                    Else
-                        lsiCol.Text = FormatCurrency(strFields(i), 0)
-                    End If
-                    lviRow.SubItems.Add(lsiCol)
+                Dim lvirow As New ListViewItem(strFields(0))
+
+                For i = 0 To strFields.Length - 1 ' change to 1
+                    Dim lsicol As New ListViewItem.ListViewSubItem
+
+
+                    lsicol.Text = strFields(i)
+                    lvirow.SubItems.Add(lsicol)
+
                 Next
-                lstInfo.Items.Add(lviRow)
-                'updateStatistics(lviRow)
+
+
+                lstInfo.Items.Add(lvirow)
+                updateStatistics(lvirow)
+
             End While
+
+
+
+
+
             fileIn.Close()
 
 
@@ -147,7 +156,7 @@ Public Class Compute
             fileOut.Dispose()
 
         Catch ex As Exception
-
+            Throw ex
         End Try
     End Sub
 
@@ -171,7 +180,7 @@ Public Class Compute
         Try
             writeOutputFile(strFileName)
         Catch exNotFound As FileNotFoundException
-            ' codes
+            '
         Catch exIoError As IOException
             'code
         Catch exOther As Exception
@@ -179,8 +188,27 @@ Public Class Compute
     End Sub
 
 
+    Private Sub updateStatistics(aRow As ListViewItem)
+        Dim blnFound As Boolean
 
+        For Each aCat As CCategories In cCategory
+            If aCat.CatName = aRow.SubItems(Subject) Then
+                aCat.totalSeminar += CDbl(aRow.SubItems(NumberRegistered).Text)
+
+            End If
+
+        Next
+    End Sub
     Private Sub btnLoad_Click(sender As Object, e As EventArgs) Handles btnLoad.Click
         openFile()
+    End Sub
+
+    Private Sub Compute_Load(sender As Object, e As EventArgs) Handles Me.Load
+        cCategory = New ArrayList
+        Stats = New Stats
+    End Sub
+
+    Private Sub btnSave_Click(sender As Object, e As EventArgs) Handles btnSave.Click
+        SaveFile()
     End Sub
 End Class
