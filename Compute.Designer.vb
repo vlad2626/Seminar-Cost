@@ -1,5 +1,5 @@
 ﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
-Partial Class Form1
+Partial Class Compute
     Inherits System.Windows.Forms.Form
 
     'Form overrides dispose to clean up the component list.
@@ -22,26 +22,19 @@ Partial Class Form1
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Me.lstInfo = New System.Windows.Forms.ListBox()
         Me.btnLoad = New System.Windows.Forms.Button()
         Me.btnSave = New System.Windows.Forms.Button()
         Me.btnExit = New System.Windows.Forms.Button()
+        Me.ofdOpen = New System.Windows.Forms.OpenFileDialog()
+        Me.sfdSave = New System.Windows.Forms.SaveFileDialog()
+        Me.lstInfo = New System.Windows.Forms.ListView()
         Me.SuspendLayout()
-        '
-        'lstInfo
-        '
-        Me.lstInfo.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.lstInfo.FormattingEnabled = True
-        Me.lstInfo.Location = New System.Drawing.Point(145, 41)
-        Me.lstInfo.Name = "lstInfo"
-        Me.lstInfo.Size = New System.Drawing.Size(475, 301)
-        Me.lstInfo.TabIndex = 0
         '
         'btnLoad
         '
         Me.btnLoad.BackColor = System.Drawing.Color.Gray
         Me.btnLoad.ForeColor = System.Drawing.Color.MediumBlue
-        Me.btnLoad.Location = New System.Drawing.Point(145, 381)
+        Me.btnLoad.Location = New System.Drawing.Point(145, 499)
         Me.btnLoad.Name = "btnLoad"
         Me.btnLoad.Size = New System.Drawing.Size(116, 34)
         Me.btnLoad.TabIndex = 1
@@ -52,7 +45,7 @@ Partial Class Form1
         '
         Me.btnSave.BackColor = System.Drawing.Color.Gray
         Me.btnSave.ForeColor = System.Drawing.Color.MediumBlue
-        Me.btnSave.Location = New System.Drawing.Point(317, 381)
+        Me.btnSave.Location = New System.Drawing.Point(533, 499)
         Me.btnSave.Name = "btnSave"
         Me.btnSave.Size = New System.Drawing.Size(116, 34)
         Me.btnSave.TabIndex = 2
@@ -63,31 +56,47 @@ Partial Class Form1
         '
         Me.btnExit.BackColor = System.Drawing.Color.Gray
         Me.btnExit.ForeColor = System.Drawing.Color.MediumBlue
-        Me.btnExit.Location = New System.Drawing.Point(504, 381)
+        Me.btnExit.Location = New System.Drawing.Point(891, 499)
         Me.btnExit.Name = "btnExit"
         Me.btnExit.Size = New System.Drawing.Size(116, 34)
         Me.btnExit.TabIndex = 3
         Me.btnExit.Text = "Exit"
         Me.btnExit.UseVisualStyleBackColor = False
         '
-        'Form1
+        'ofdOpen
+        '
+        Me.ofdOpen.FileName = "OpenFileDialog1"
+        '
+        'lstInfo
+        '
+        Me.lstInfo.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.lstInfo.HideSelection = False
+        Me.lstInfo.Location = New System.Drawing.Point(132, 137)
+        Me.lstInfo.Name = "lstInfo"
+        Me.lstInfo.Size = New System.Drawing.Size(898, 287)
+        Me.lstInfo.TabIndex = 4
+        Me.lstInfo.UseCompatibleStateImageBehavior = False
+        Me.lstInfo.View = System.Windows.Forms.View.Details
+        '
+        'Compute
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.MintCream
-        Me.ClientSize = New System.Drawing.Size(800, 450)
+        Me.ClientSize = New System.Drawing.Size(1109, 615)
+        Me.Controls.Add(Me.lstInfo)
         Me.Controls.Add(Me.btnExit)
         Me.Controls.Add(Me.btnSave)
         Me.Controls.Add(Me.btnLoad)
-        Me.Controls.Add(Me.lstInfo)
-        Me.Name = "Form1"
+        Me.Name = "Compute"
         Me.Text = "Form1"
         Me.ResumeLayout(False)
 
     End Sub
-
-    Friend WithEvents lstInfo As ListBox
     Friend WithEvents btnLoad As Button
     Friend WithEvents btnSave As Button
     Friend WithEvents btnExit As Button
+    Friend WithEvents ofdOpen As OpenFileDialog
+    Friend WithEvents sfdSave As SaveFileDialog
+    Friend WithEvents lstInfo As ListView
 End Class
